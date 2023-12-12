@@ -40,13 +40,13 @@ function clicked() {
 
 function changeTouchControls() {
 	if(!touchControls) {
-		changeTCButton.setAttribute('value', 'Touch congrols is enabled!');
-		camera.setAttribute('look-controls', {'touchEnabled': 'true',' mouseEnabled': 'true'});
+		changeTCButton.setAttribute('value', 'Touch controls is enabled!');
+		camera.setAttribute('look-controls', {'touchEnabled': 'true','mouseEnabled': 'true'});
 		touchControls = true;
 	}
 	else {
 		changeTCButton.setAttribute('value', 'Touch controls is disabled!');
-		camera.setAttribute('look-controls', {'touchEnabled': 'false', 'mouseEnabled': 'true'});
+		camera.setAttribute('look-controls', {'touchEnabled': 'false','mouseEnabled': 'false'});
 		touchControls = false;
 	}
 }
