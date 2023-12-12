@@ -1,5 +1,3 @@
-let count = 0;
-
 let box_element = document.getElementById('moving');
 let new_element = document.createElement('a-plane');
 new_element.setAttribute('color', 'yellow');
@@ -8,8 +6,17 @@ box_element.after(new_element);
 
 new_element.setAttribute('position', '0 0 -2');
 new_element.setAttribute('scale', '0.5 1 1');
+
+
+let count = 0;
+let touchControls = false;
+
+let center = document.querySelector('h1');
+let stopButton = document.getElementById('b1');
+let changeTCButton = document.getElementById('b2');
+let camera = document.querySelector('[camera]');
+
 function clicked() {
-	let center = document.querySelector('h1');
 	if(count%2 == 0) {
 		let box_pos = box_element.getAttribute('position');
 		let dist = Math.abs(box_pos.x);
@@ -29,4 +36,17 @@ function clicked() {
 		center.innerHTML = "";
 	}
 	count = count + 1;
+}
+
+function changeTouchControls() {
+	if(!touchControls) {
+		changeTCButton.setAttribute('value', 'Touch congrols is enabled!');
+		camera.setAttribute('look-controls', {'touchEnabled': 'true',' mouseEnabled': 'true'});
+		touchControls = true;
+	}
+	else {
+		changeTCButton.setAttribute('value', 'Touch controls is disabled!');
+		camera.setAttribute('look-controls', {'touchEnabled': 'false', 'mouseEnabled': 'true'});
+		touchControls = false;
+	}
 }
