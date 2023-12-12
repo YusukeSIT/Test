@@ -7,13 +7,13 @@ box_element.after(new_element);
 new_element.setAttribute('position', '0 0 -2');
 new_element.setAttribute('scale', '0.5 1 1');
 
+let center = document.querySelector('h1');
+let stopButton = document.getElementById('b1');
+let changeTCButton = document.getElementById('b2');
 
 let count = 0;
 let touchControls = false;
 
-let center = document.querySelector('h1');
-let stopButton = document.getElementById('b1');
-let changeTCButton = document.getElementById('b2');
 let camera = document.querySelector('[camera]');
 
 function clicked() {
@@ -38,15 +38,46 @@ function clicked() {
 	count = count + 1;
 }
 
+let mobile = true;
+let setValueFalse = "string";
+let setValueTrue = "string";
+
+if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+	setValueFalse = "look-controls is disabled!";
+    setValueTrue = "look-controls is enabled!";
+    changeTCButton.setAttribute('value', setValueFalse);
+    camera.setAttribute('look-controls', {'enabled': 'false'});
+} 
+else {
+	setValueFalse = "Touch controls is disabled!";
+    setValueTrue = "Touch controls is enabled!";
+    changeTCButton.setAttribute('value', setValueFalse);
+    mobile = false;
+}
+
+
+
 function changeTouchControls() {
 	if(!touchControls) {
-		changeTCButton.setAttribute('value', 'Touch controls is enabled!');
-		camera.setAttribute('look-controls', {'touchEnabled': 'true','mouseEnabled': 'true'});
+		changeTCButton.setAttribute('value', setValueTrue);
 		touchControls = true;
+
+		if(mobile) {
+			camera.setAttribute('look-controls', {'enabled': 'true'});
+		}
+		else {
+			camera.setAttribute('look-controls', {'touchEnabled': 'true','mouseEnabled': 'true'});
+		}	
 	}
 	else {
-		changeTCButton.setAttribute('value', 'Touch controls is disabled!');
-		camera.setAttribute('look-controls', {'touchEnabled': 'false','mouseEnabled': 'false'});
+		changeTCButton.setAttribute('value', setValueFalse);
 		touchControls = false;
+
+		if(mobile) {
+			camera.setAttribute('look-controls', {'enabled': 'false'});
+		}
+		else {
+			camera.setAttribute('look-controls', {'touchEnabled': 'false','mouseEnabled': 'false'});
+		}
 	}
 }
