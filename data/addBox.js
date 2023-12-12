@@ -2,12 +2,12 @@ let count = 0;
 
 let box_element = document.getElementById('moving');
 let new_element = document.createElement('a-plane');
-new_element.setAttribute('position', '0 0 -2');
-new_element.setAttribute('scale', '0.5 1 1');
 new_element.setAttribute('color', 'yellow');
 new_element.setAttribute('opacity', '0.5');
 box_element.after(new_element);
 
+new_element.setAttribute('position', '0 0 -2');
+new_element.setAttribute('scale', '0.5 1 1');
 function clicked() {
 	let center = document.querySelector('h1');
 	if(count%2 == 0) {
